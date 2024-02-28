@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <title>CS Department Survey</title>
+  <style>
+    .green {
+      color: #006633;
+    }
+
+    .yellow {
+      color: #006633;
+      background-color: #FFCC33;
+    }
+
+    .background {
+      background-color: #006633;
+    }
+
+    .button {
+      background-color: #006633;
+      color: #FFCC33;
+    }
+
+    .box {
+      border-width: 5px;
+      border-style: solid;
+      border-color: black;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body class="background box-shadow">
+
+  <div class="container mt-4">
+    <h1 class="yellow p-4 green box">CS Department Student Survey Form</h1>
+
+    <form action="#" method="post" autocomplete="on" class="yellow p-5 box ">
+      <div>
+        <label for="username">Username: <span class="text-danger">*</span></label>
+        <input type="text" id="username" name="username" placeholder="e.g. johndoe" required>
+      </div>
+      <div>
+        <label for="street-address">Street Address: <span class="text-danger">*</span></label>
+        <input type="text" id="street-address" class="w-50" name="street-address" placeholder="e.g. 123 Main St" required>
+      </div>
+      <div>
+        <label for="city">City: <span class="text-danger">*</span></label>
+        <input type="text" id="city" name="city" placeholder="e.g. 12345" required>
+      </div>
+
+      <div>
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" placeholder="e.g. 12345" required>
+      </div>
+
+      <div>
+        <label for="zip">Zip:</label>
+        <input type="text" id="zip" name="zip" placeholder="e.g. 10001" required>
+        <div id="zip-error" class="text-danger"></div>
+      </div>
+
+      <div>
+        <label for="telephone">Telephone Number: <span class="text-danger">*</span></label>
+        <input type="tel" id="telephone" name="telephone" placeholder="e.g. (555) 123-4567" required>
+      </div>
+
+      <div>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" class="w-50" name="email" placeholder="e.g. example@example.com" required>
+      </div>
+
+      <div>
+        <label for="url">URL:</label>
+        <input type="url" id="url" class="w-50" name="url" placeholder="e.g. https://www.example.com" required>
+      </div>
+
+      <div>
+        <label for="survey-date">Date of Survey:</label>
+        <input type="date" id="survey-date" name="survey-date" placeholder="YYYY-MM-DD" required>
+      </div>
+
+      <div>
+        <label for="likes">What did you like most about the campus?</label><br>
+        <input type="checkbox" id="students" name="likes" value="students">
+        <label for="students">Students</label><br>
+        <input type="checkbox" id="location" name="likes" value="location">
+        <label for="location">Location</label><br>
+        <input type="checkbox" id="campus" name="likes" value="campus">
+        <label for="campus">Campus</label><br>
+        <input type="checkbox" id="atmosphere" name="likes" value="atmosphere">
+        <label for="atmosphere">Atmosphere</label><br>
+        <input type="checkbox" id="dorm-rooms" name="likes" value="dorm-rooms">
+        <label for="dorm-rooms">Dorm Rooms</label><br>
+        <input type="checkbox" id="sports" name="likes" value="sports">
+        <label for="sports">Sports</label><br>
+      </div>
+
+      <div>
+        <label>How did you become interested in the university?</label><br>
+        <input type="radio" id="friends" name="interest" value="friends">
+        <label for="friends">Friends</label><br>
+        <input type="radio" id="television" name="interest" value="television">
+        <label for="television">Television</label><br>
+        <input type="radio" id="internet" name="interest" value="internet">
+        <label for="internet">Internet</label><br>
+        <input type="radio" id="other" name="interest" value="other">
+        <label for="other">Other</label><br>
+      </div>
+
+      <div>
+        <label for="comments">Additional Comments:</label><br>
+        <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+      </div>
+
+      <div>
+        <label for="graduation-month">High School Graduation Month:</label>
+        <input type="text" id="graduation-month" name="graduation-month" list="months" placeholder="Select from list" required>
+        <datalist id="months">
+          <option value="January">
+          <option value="February">
+          <option value="March">
+          <option value="April">
+          <option value="May">
+          <option value="June">
+          <option value="July">
+          <option value="August">
+          <option value="September">
+          <option value="October">
+          <option value="November">
+          <option value="December">
+        </datalist>
+      </div>
+
+      <div>
+        <label for="graduation-year">High School Graduation Year:</label>
+        <input type="text" id="graduation-year" name="graduation-year" placeholder="e.g. 2022" required>
+      </div>
+
+      <div>
+        <label for="recommendation">Likelihood of Recommending:</label>
+        <select id="recommendation" name="recommendation" required>
+          <option value="very-likely" selected>Very Likely</option>
+          <option value="likely">Likely</option>
+          <option value="unlikely">Unlikely</option>
+        </select>
+      </div>
+      <button class="mb-5 btn button" type="submit">Submit</button>
+    </form>
+
+    <!-- Greetings and Cookie Implementation -->
+    <div id="greeting"></div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Get the username input field
+      const usernameInput = $('#username');
+
+      // Function to set a cookie with the username
+      function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+      }
+
+      // Function to get a cookie by name
+      function getCookie(name) {
+        const cookieName = name + "=";
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          let cookie = cookies[i];
+          while (cookie.charAt(0) === ' ') {
+            cookie = cookie.substring(1);
+          }
+          if (cookie.indexOf(cookieName) === 0) {
+            return cookie.substring(cookieName.length, cookie.length);
+          }
+        }
+        return "";
+      }
+
+      // Function to display the greeting message based on the time of day
+      function displayGreetingMessage(username) {
+        const today = new Date();
+        const hour = today.getHours();
+        let greeting;
+        if (hour < 12) {
+          greeting = "Good Morning";
+        } else if (hour < 18) {
+          greeting = "Good Afternoon";
+        } else {
+          greeting = "Good Evening";
+        }
+        const greetingDiv = $('#greeting');
+        greetingDiv.html(`<h2>${greeting}, ${username}, welcome to the CS Department Student Survey Form</h2>`);
+      }
+
+      // Check if the username is stored in a cookie
+      const storedUsername = getCookie('username');
+      if (storedUsername) {
+        // If the username is stored, display the greeting message
+        displayGreetingMessage(storedUsername);
+      } else {
+        // If the username is not stored, prompt the user to enter it
+        const username = prompt("Please enter your username:");
+        if (username) {
+          // If the user enters a username, set it in a cookie
+          setCookie('username', username, 30);
+          // Display the greeting message
+          displayGreetingMessage(username);
+        }
+      }
+
+      // Restrict username input to accept only alphabets
+      usernameInput.on('input', function() {
+        $(this).val($(this).val().replace(/[^A-Za-z]/g, ''));
+      });
+    });
+  </script>
+</body>
+
+</html>
